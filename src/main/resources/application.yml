@@ -1,0 +1,32 @@
+spring:
+  cloud:
+    config:
+      uri: http://localhost:8080/
+      username: user
+      password: pass
+      server:
+        git:
+          uri: https://github.com/lyncodes/spring_cloud_config
+          search-paths: /config
+          username: lyncodes
+          password: lyngithub12
+          default-label: main
+  security:
+    user:
+      password: pass
+      name: user
+  application:
+    name: config-server
+
+
+# 把config-server注册到注册中心
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://node1:8081/eureka/,http://node1:8082/eureka/,http://node1:8082/eureka/
+
+
+server:
+  port: 9090
